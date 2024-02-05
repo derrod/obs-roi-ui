@@ -1,48 +1,40 @@
 {
     "dependencies": {
         "obs-studio": {
-            "version": "30.0.2",
+            "version": "30.1.0-beta1",
             "baseUrl": "https://github.com/obsproject/obs-studio/archive/refs/tags",
             "label": "OBS sources",
             "hashes": {
-                "macos": "be12c3ad0a85713750d8325e4b1db75086223402d7080d0e3c2833d7c5e83c27",
-                "windows-x64": "970058c49322cfa9cd6d620abb393fed89743ba7e74bd9dbb6ebe0ea8141d9c7"
+                "windows-x64": "e596c626a127232099289ab508abbf265635744a8676845008bc508691e55896"
             }
         },
         "prebuilt": {
-            "version": "2023-11-03",
+            "version": "2024-01-27",
             "baseUrl": "https://github.com/obsproject/obs-deps/releases/download",
             "label": "Pre-Built obs-deps",
             "hashes": {
-                "macos": "90c2fc069847ec2768dcc867c1c63b112c615ed845a907dc44acab7a97181974",
-                "windows-x64": "d0825a6fb65822c993a3059edfba70d72d2e632ef74893588cf12b1f0d329ce6"
+                "windows-x64": "d371f8cc81859b5321b66dcef00a207abbdff7373c722b761852cbc95664b4c9"
             }
         },
         "qt6": {
-            "version": "2023-11-03",
+            "version": "2024-01-27",
             "baseUrl": "https://github.com/obsproject/obs-deps/releases/download",
             "label": "Pre-Built Qt6",
             "hashes": {
-                "macos": "ba4a7152848da0053f63427a2a2cb0a199af3992997c0db08564df6f48c9db98",
-                "windows-x64": "bc57dedf76b47119a6dce0435a2f21b35b08c8f2948b1cb34a157320f77732d1"
+                "windows-x64": "7a15c4b494bfe2df51cad16e7cbcfcc2b5b69b55839dd584c622214038c7d44c"
             },
             "debugSymbols": {
-                "windows-x64": "fd8ecd1d8cd2ef049d9f4d7fb5c134f784836d6020758094855dfa98bd025036"
+                "windows-x64": "44a3b2b9d576bf0553b0bcabfb71397010e66da9889a0a9b16feb06fbae98f64"
             }
         }
     },
-    "platformConfig": {
-        "macos": {
-            "bundleId": "com.example.obs-plugintemplate"
-        }
-    },
-    "name": "obs-plugintemplate",
-    "displayName": "OBS Plugin Template",
+    "name": "obs-roi-ui",
+    "displayName": "OBS ROI Editor",
     "version": "1.0.0",
-    "author": "Your Name Here",
-    "website": "https://example.com",
-    "email": "me@example.com",
+    "author": "Dennis Sädtler",
+    "website": "https://rodney.io",
+    "email": "dennis@obsproject.com",
     "uuids": {
-        "windowsApp": "00000000-0000-0000-0000-000000000000"
+        "windowsApp": "20fbf496-43e5-4d30-a2df-8306b3dd665d"
     }
 }
