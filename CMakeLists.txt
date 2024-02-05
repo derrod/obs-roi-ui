@@ -31,9 +31,19 @@ if(ENABLE_QT)
     ${CMAKE_PROJECT_NAME}
     PROPERTIES AUTOMOC ON
                AUTOUIC ON
-               AUTORCC ON)
+               AUTORCC ON
+               AUTOUIC_SEARCH_PATHS src/forms)
 endif()
 
+# C
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-main.c)
+# C++/UI
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/roi-editor.cpp src/roi-editor.hpp)
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/forms/roi-editor.ui)
+
+# utils stolen from OBS UI
+target_sources(
+  ${CMAKE_PROJECT_NAME} PRIVATE src/external/display-helpers.hpp src/external/qt-display.hpp
+                                src/external/qt-display.cpp src/external/qt-wrappers.hpp src/external/qt-wrappers.cpp)
 
 set_target_properties_plugin(${CMAKE_PROJECT_NAME} PROPERTIES OUTPUT_NAME ${_name})

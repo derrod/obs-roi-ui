@@ -1,0 +1,1114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ROIEditor</class>
+ <widget class="QDialog" name="ROIEditor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1585</width>
+    <height>929</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ROIEditor</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QSplitter" name="splitter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>1</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <layout class="QVBoxLayout" name="editLayout">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>ROI.Scene</string>
+           </property>
+           <property name="buddy">
+            <cstring>sceneSelect</cstring>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="sceneSelect">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QListWidget" name="roiList">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>2</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolBar" name="roiListToolbar">
+         <property name="iconSize">
+          <size>
+           <width>16</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="floatable">
+          <bool>false</bool>
+         </property>
+         <addaction name="actionAddRoi"/>
+         <addaction name="actionRemoveRoi"/>
+         <addaction name="separator"/>
+         <addaction name="actionRoiUp"/>
+         <addaction name="actionRoiDown"/>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="roiCommonPropertiesGroupBox">
+         <property name="title">
+          <string>ROI.Properties.Common</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="roiPropPriorityLabel">
+            <property name="text">
+             <string>ROI.Property.Priority</string>
+            </property>
+            <property name="buddy">
+             <cstring>roiPropPrioritySlider</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QSlider" name="roiPropPrioritySlider">
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="tracking">
+               <bool>true</bool>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="tickPosition">
+               <enum>QSlider::TickPosition::TicksBelow</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="roiPropPrioritySpinbox">
+              <property name="suffix">
+               <string notr="true"> %</string>
+              </property>
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="roiPropEnabled">
+            <property name="text">
+             <string>ROI.Property.Enabled</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QStackedWidget" name="roiPropertiesStack">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="currentIndex">
+          <number>1</number>
+         </property>
+         <widget class="QGroupBox" name="roiSceneItemPropertiesGroupBox">
+          <property name="title">
+           <string>ROI.Properties.SceneItem</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_4">
+           <item row="0" column="0">
+            <widget class="QLabel" name="roiPropSceneItemLabel">
+             <property name="text">
+              <string>ROI.Property.SceneItem</string>
+             </property>
+             <property name="buddy">
+              <cstring>roiPropSceneItem</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="roiPropSceneItem">
+             <property name="placeholderText">
+              <string>ROI.Property.SceneItem.NoSelection</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>ROI.Property.Smoothing</string>
+             </property>
+             <property name="buddy">
+              <cstring>roiPropSceneItemSmoothing</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_15">
+             <item>
+              <widget class="QComboBox" name="roiPropSceneItemSmoothing"/>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="roiPropSceneItemSmoothingSteps">
+               <property name="suffix">
+                <string>ROI.Property.Smoothing.StepsSuffix</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>ROI.Property.Smoothing.Priority</string>
+             </property>
+             <property name="buddy">
+              <cstring>roiPropSceneItemSmoothingPriority</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_16">
+             <item>
+              <widget class="QSlider" name="roiPropSceneItemSmoothingPriority">
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="roiPropSceneItemSmoothingPrioritySb">
+               <property name="suffix">
+                <string> %</string>
+               </property>
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QGroupBox" name="roiCenterFocusPropertiesGroupBox">
+          <property name="title">
+           <string>ROI.Properties.CenterFocus</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_5">
+           <item row="0" column="0">
+            <widget class="QLabel" name="roiPropOuterPriorityLabel">
+             <property name="text">
+              <string>ROI.Property.OuterPriority</string>
+             </property>
+             <property name="buddy">
+              <cstring>roiPropOuterPrioritySlider</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <widget class="QSlider" name="roiPropOuterPrioritySlider">
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="tracking">
+                <bool>true</bool>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="tickPosition">
+                <enum>QSlider::TickPosition::TicksBelow</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="roiPropOuterPrioritySpinbox">
+               <property name="suffix">
+                <string notr="true"> %</string>
+               </property>
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="roiPropRadiusInnerLabel">
+             <property name="text">
+              <string>ROI.Property.RadiusInner</string>
+             </property>
+             <property name="buddy">
+              <cstring>roiPropRadiusInnerSb</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <item>
+              <widget class="QSpinBox" name="roiPropRadiusInnerSb">
+               <property name="suffix">
+                <string> px</string>
+               </property>
+               <property name="maximum">
+                <number>16384</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="roiPropRadiusInnerAspect">
+               <property name="text">
+                <string>ROI.Property.RadiusAspect</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="roiPropRadiusInnerCircle">
+               <property name="text">
+                <string>ROI.Property.RadiusCircle</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="roiPropRadiusOuterLabel">
+             <property name="text">
+              <string>ROI.Property.RadiusOuter</string>
+             </property>
+             <property name="buddy">
+              <cstring>roiPropRadiusOuterSb</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <item>
+              <widget class="QSpinBox" name="roiPropRadiusOuterSb">
+               <property name="suffix">
+                <string> px</string>
+               </property>
+               <property name="maximum">
+                <number>16384</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="roiPropRadiusOuterAspect">
+               <property name="text">
+                <string>ROI.Property.RadiusAspect</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="roiPropStepsLabel">
+             <property name="text">
+              <string>ROI.Property.Steps</string>
+             </property>
+             <property name="buddy">
+              <cstring>roiPropStepsInnerSb</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <item>
+              <widget class="QLabel" name="roiPropStepsInnerLabel">
+               <property name="text">
+                <string>ROI.Property.Steps.Inner</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="roiPropStepsInnerSb">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="roiPropStepsOuterLabel">
+               <property name="text">
+                <string>ROI.Property.Steps.Outer</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="roiPropStepsOuterSb">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="roiPropCenterPointLabel">
+             <property name="text">
+              <string>ROI.Property.CenterPoint</string>
+             </property>
+             <property name="buddy">
+              <cstring>roiPropCenterPosX</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <item>
+              <widget class="QSpinBox" name="roiPropCenterPosX">
+               <property name="prefix">
+                <string>X: </string>
+               </property>
+               <property name="minimum">
+                <number>-1</number>
+               </property>
+               <property name="maximum">
+                <number>16384</number>
+               </property>
+               <property name="value">
+                <number>-1</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="roiPropCenterPosY">
+               <property name="suffix">
+                <string> px</string>
+               </property>
+               <property name="prefix">
+                <string>Y: </string>
+               </property>
+               <property name="minimum">
+                <number>-1</number>
+               </property>
+               <property name="maximum">
+                <number>16384</number>
+               </property>
+               <property name="value">
+                <number>-1</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QGroupBox" name="roiManualPropertiesGroupBox">
+          <property name="title">
+           <string>ROI.Properties.Manual</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_2">
+           <item row="0" column="0">
+            <widget class="QLabel" name="roiPropSizeLabel">
+             <property name="text">
+              <string>ROI.Property.Size</string>
+             </property>
+             <property name="buddy">
+              <cstring>roiPropSizeX</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QSpinBox" name="roiPropSizeX">
+               <property name="suffix">
+                <string> px</string>
+               </property>
+               <property name="prefix">
+                <string>ROI.Property.Size.X.Prefix</string>
+               </property>
+               <property name="minimum">
+                <number>16</number>
+               </property>
+               <property name="maximum">
+                <number>16384</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="roiPropSizeY">
+               <property name="suffix">
+                <string> px</string>
+               </property>
+               <property name="prefix">
+                <string>ROI.Property.Size.Y.Prefix</string>
+               </property>
+               <property name="minimum">
+                <number>16</number>
+               </property>
+               <property name="maximum">
+                <number>16384</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="roiPropPosLabel">
+             <property name="text">
+              <string>ROI.Property.Position</string>
+             </property>
+             <property name="buddy">
+              <cstring>roiPropPosX</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QSpinBox" name="roiPropPosX">
+               <property name="suffix">
+                <string> px</string>
+               </property>
+               <property name="prefix">
+                <string>X: </string>
+               </property>
+               <property name="maximum">
+                <number>16384</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="roiPropPosY">
+               <property name="suffix">
+                <string> px</string>
+               </property>
+               <property name="prefix">
+                <string>Y: </string>
+               </property>
+               <property name="maximum">
+                <number>16384</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>ROI.Property.Smoothing</string>
+             </property>
+             <property name="buddy">
+              <cstring>roiPropManualSmoothing</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_13">
+             <item>
+              <widget class="QComboBox" name="roiPropManualSmoothing"/>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="roiPropManualSmoothingSteps">
+               <property name="suffix">
+                <string>ROI.Property.Smoothing.StepsSuffix</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>ROI.Property.Smoothing.Priority</string>
+             </property>
+             <property name="buddy">
+              <cstring>roiPropManualSmoothingPriority</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <item>
+              <widget class="QSlider" name="roiPropManualSmoothingPriority">
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="roiPropManualSmoothingPrioritySb">
+               <property name="suffix">
+                <string> %</string>
+               </property>
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_2">
+      <layout class="QVBoxLayout" name="previewLayout">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>ROI.BlockSize</string>
+           </property>
+           <property name="buddy">
+            <cstring>roiBlockSize</cstring>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="roiBlockSize">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>ROI.Preview</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="OBSQTDisplay" name="preview" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>640</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>ROI.Preview.Opacity</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="previewOpacity">
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>50</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="previewOpacitySb">
+           <property name="suffix">
+            <string notr="true"> %</string>
+           </property>
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>50</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>ROI.HelpText</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::TextFormat::RichText</enum>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="roiUsageLabel">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="roiWarningLabel">
+         <property name="text">
+          <string>ROI.Usage.Warning</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QCheckBox" name="enableRoi">
+       <property name="text">
+        <string>ROI.Enabled</string>
+       </property>
+      </widget>
+     </item>
+     <item alignment="Qt::AlignmentFlag::AlignRight">
+      <widget class="QPushButton" name="close">
+       <property name="text">
+        <string>Close</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+  <action name="actionAddRoi">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/res/images/plus.svg</normaloff>:/res/images/plus.svg</iconset>
+   </property>
+   <property name="text">
+    <string>ROI.ItemAction.Add</string>
+   </property>
+   <property name="themeID" stdset="0">
+    <string notr="true">addIconSmall</string>
+   </property>
+  </action>
+  <action name="actionRemoveRoi">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/res/images/minus.svg</normaloff>:/res/images/minus.svg</iconset>
+   </property>
+   <property name="text">
+    <string>ROI.ItemAction.Remove</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ShortcutContext::WindowShortcut</enum>
+   </property>
+   <property name="themeID" stdset="0">
+    <string notr="true">removeIconSmall</string>
+   </property>
+  </action>
+  <action name="actionRoiUp">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/res/images/up.svg</normaloff>:/res/images/up.svg</iconset>
+   </property>
+   <property name="text">
+    <string>ROI.ItemAction.MoveUp</string>
+   </property>
+   <property name="themeID" stdset="0">
+    <string notr="true">upArrowIconSmall</string>
+   </property>
+  </action>
+  <action name="actionRoiDown">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/res/images/down.svg</normaloff>:/res/images/down.svg</iconset>
+   </property>
+   <property name="text">
+    <string>ROI.ItemAction.MoveDown</string>
+   </property>
+   <property name="themeID" stdset="0">
+    <string notr="true">downArrowIconSmall</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>OBSQTDisplay</class>
+   <extends>QWidget</extends>
+   <header>external/qt-display.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>roiPropPrioritySlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>roiPropPrioritySpinbox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>349</x>
+     <y>531</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>581</x>
+     <y>531</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropPrioritySpinbox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>roiPropPrioritySlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>581</x>
+     <y>531</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>531</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropOuterPrioritySlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>roiPropOuterPrioritySpinbox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>356</x>
+     <y>539</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>581</x>
+     <y>538</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropOuterPrioritySpinbox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>roiPropOuterPrioritySlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>581</x>
+     <y>538</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>539</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>previewOpacity</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>previewOpacitySb</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>946</x>
+     <y>539</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1211</x>
+     <y>539</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>previewOpacitySb</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>previewOpacity</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1211</x>
+     <y>539</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>946</x>
+     <y>539</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropManualSmoothingPriority</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>roiPropManualSmoothingPrioritySb</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>352</x>
+     <y>494</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>545</x>
+     <y>494</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropManualSmoothingPrioritySb</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>roiPropManualSmoothingPriority</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>545</x>
+     <y>494</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>352</x>
+     <y>494</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropSceneItemSmoothingPriority</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>roiPropManualSmoothingPriority</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>372</x>
+     <y>462</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>372</x>
+     <y>494</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropManualSmoothingPriority</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>roiPropSceneItemSmoothingPriority</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>372</x>
+     <y>494</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>372</x>
+     <y>462</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropSceneItemSmoothingPrioritySb</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>roiPropManualSmoothingPriority</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>582</x>
+     <y>462</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>372</x>
+     <y>494</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropManualSmoothingPriority</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>roiPropSceneItemSmoothingPrioritySb</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>372</x>
+     <y>494</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>582</x>
+     <y>462</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropSceneItemSmoothingSteps</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>roiPropManualSmoothingSteps</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>496</x>
+     <y>432</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>496</x>
+     <y>464</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropManualSmoothingSteps</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>roiPropSceneItemSmoothingSteps</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>496</x>
+     <y>464</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>496</x>
+     <y>432</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropManualSmoothing</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>roiPropSceneItemSmoothing</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>286</x>
+     <y>464</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>432</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>roiPropSceneItemSmoothing</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>roiPropManualSmoothing</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>286</x>
+     <y>432</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>464</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
