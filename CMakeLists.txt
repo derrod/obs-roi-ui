@@ -41,6 +41,9 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-main.c)
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/roi-editor.cpp src/roi-editor.hpp)
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/forms/roi-editor.ui)
 
+# Out of tree compile
+target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE BUILD_STANDALONE)
+
 # utils stolen from OBS UI
 target_sources(
   ${CMAKE_PROJECT_NAME} PRIVATE src/external/display-helpers.hpp src/external/qt-display.hpp

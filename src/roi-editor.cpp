@@ -1,7 +1,12 @@
 #include "roi-editor.hpp"
 
+#ifdef BUILD_STANDALONE
 #include "external/display-helpers.hpp"
 #include "external/qt-wrappers.hpp"
+#else
+#include "display-helpers.hpp"
+#include "qt-wrappers.hpp"
+#endif
 
 #include <obs-module.h>
 #include <obs-frontend-api.h>
