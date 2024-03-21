@@ -37,8 +37,12 @@ set_target_properties(
 # C
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-main.c)
 # C++/UI
-target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/roi-editor.cpp src/roi-editor.hpp)
-target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/forms/roi-editor.ui)
+target_sources(
+  ${CMAKE_PROJECT_NAME}
+  PRIVATE # cmake-format: sortable
+          src/encoder-preview-ff-glue.cpp src/encoder-preview-ff-glue.hpp src/encoder-preview.cpp
+          src/encoder-preview.hpp src/roi-editor.cpp src/roi-editor.hpp)
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/forms/roi-editor.ui src/forms/encoder-preview.ui)
 
 # Out of tree compile
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE BUILD_STANDALONE)
