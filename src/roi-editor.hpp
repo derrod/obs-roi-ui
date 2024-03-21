@@ -78,10 +78,9 @@ private slots:
 	void UpdatePreview();
 
 	void RefreshData();
-
-private:
 	void RefreshSceneItems();
 
+private:
 	void AddRegionItem(int type);
 
 	void RegionItemsToData();
@@ -105,6 +104,8 @@ private:
 	// key is scene UUID
 	std::unordered_map<std::string, std::vector<OBSDataAutoRelease>>
 		roi_data;
+
+	bool enumerate_all_encoders = false;
 
 	// Rendering stuff
 	std::mutex preview_roi_mutex;

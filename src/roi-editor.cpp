@@ -65,6 +65,8 @@ RoiEditor::RoiEditor(QWidget *parent)
 	connect(ui->close, &QPushButton::clicked, this, &RoiEditor::close);
 	connect(ui->enableRoi, &QCheckBox::stateChanged, this,
 		&RoiEditor::UpdateEncoders);
+	connect(ui->excludeRecordings, &QCheckBox::stateChanged, this,
+		&RoiEditor::UpdateEncoders);
 
 	connect(ui->sceneSelect, &QComboBox::currentIndexChanged, this,
 		&RoiEditor::SceneSelectionChanged);
@@ -848,23 +850,47 @@ void RoiEditor::UpdateEncoders()
 	const string uuid = obs_source_get_uuid(scene);
 
 	std::vector<OBSEncoder> encoders;
+	std::vector<OBSOutputAutoRelease> outputs;
 
-	// Find all video encoders that could reasonably be in use
-	for (OBSOutputAutoRelease output :
-	     {obs_frontend_get_recording_output(),
-	      obs_frontend_get_streaming_output(),
-	      obs_frontend_get_replay_buffer_output()}) {
-		if (!output)
-			continue;
-
-		for (size_t idx = 0; idx < MAX_OUTPUT_VIDEO_ENCODERS; idx++) {
-			obs_encoder_t *enc =
-				obs_output_get_video_encoder2(output, idx);
-			if (!enc)
-				continue;
-			if (obs_encoder_get_caps(enc) & OBS_ENCODER_CAP_ROI)
-				encoders.emplace_back(enc);
+	if (!enumerate_all_encoders) {
+		outputs.push_back(obs_frontend_get_streaming_output());
+		if (!ui->excludeRecordings->isChecked()) {
+			outputs.push_back(obs_frontend_get_recording_output());
+			outputs.push_back(
+				obs_frontend_get_replay_buffer_output());
 		}
+		outputs.push_back(obs_get_output_by_name("encoder_preview"));
+
+		// Find all video encoders that could reasonably be in use
+		for (obs_output_t *output : outputs) {
+			if (!output)
+				continue;
+
+			for (size_t idx = 0; idx < MAX_OUTPUT_VIDEO_ENCODERS;
+			     idx++) {
+				obs_encoder_t *enc =
+					obs_output_get_video_encoder2(output,
+								      idx);
+				if (!enc)
+					continue;
+				if (obs_encoder_get_caps(enc) &
+				    OBS_ENCODER_CAP_ROI)
+					encoders.emplace_back(enc);
+			}
+		}
+	} else {
+		// Alternative more thorough option for special cases
+		auto cb = [](void *param, obs_encoder_t *enc) {
+			auto vec =
+				static_cast<std::vector<OBSEncoder> *>(param);
+
+			if (obs_encoder_get_type(enc) == OBS_ENCODER_VIDEO)
+				vec->push_back(enc);
+
+			return true;
+		};
+
+		obs_enum_encoders(cb, &encoders);
 	}
 
 	if (encoders.empty())
@@ -1217,8 +1243,13 @@ void RoiEditor::DrawPreview(void *data, uint32_t cx, uint32_t cy)
 void RoiEditor::LoadRoisFromOBSData(obs_data_t *obj)
 {
 	ui->enableRoi->setChecked(obs_data_get_bool(obj, "enabled"));
+	ui->excludeRecordings->setChecked(
+		obs_data_get_bool(obj, "ignore_recording_encoder"));
+
 	debug_draw = obs_data_get_bool(obj, "debug_draw");
 	debug_draw_single = obs_data_get_bool(obj, "debug_draw_single");
+	enumerate_all_encoders =
+		obs_data_get_bool(obj, "enumerate_all_encoders");
 
 	if (const char *geo = obs_data_get_string(obj, "window_geometry"))
 		geometry = QByteArray::fromBase64(geo);
@@ -1270,6 +1301,10 @@ void RoiEditor::SaveRoisToOBSData(obs_data_t *obj) const
 	obs_data_set_int(obj, "opacity", ui->previewOpacity->value());
 	obs_data_set_string(obj, "window_geometry",
 			    saveGeometry().toBase64().constData());
+	obs_data_set_bool(obj, "enumerate_all_encoders",
+			  enumerate_all_encoders);
+	obs_data_set_bool(obj, "ignore_recording_encoder",
+			  ui->excludeRecordings->isChecked());
 }
 
 /*
