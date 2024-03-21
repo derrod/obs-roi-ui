@@ -11,7 +11,6 @@
 #include <obs.hpp>
 #include <media-io/video-scaler.h>
 
-
 /* non-interleaved video packets are not ref-counted,
  * so this has to do as our own RAII copy mechanism. */
 struct packet {
