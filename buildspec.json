@@ -1,30 +1,30 @@
 {
     "dependencies": {
         "obs-studio": {
-            "version": "30.1.0-beta1",
+            "version": "30.1.0",
             "baseUrl": "https://github.com/obsproject/obs-studio/archive/refs/tags",
             "label": "OBS sources",
             "hashes": {
-                "windows-x64": "e596c626a127232099289ab508abbf265635744a8676845008bc508691e55896"
+                "windows-x64": "fc8945ddb4adacc542872d1aacc428a4ac2e9e1282b6950400211848db74e186"
             }
         },
         "prebuilt": {
-            "version": "2024-01-27",
+            "version": "2024-03-19",
             "baseUrl": "https://github.com/obsproject/obs-deps/releases/download",
             "label": "Pre-Built obs-deps",
             "hashes": {
-                "windows-x64": "d371f8cc81859b5321b66dcef00a207abbdff7373c722b761852cbc95664b4c9"
+                "windows-x64": "6e86068371526a967e805f6f9903f9407adb683c21820db5f07da8f30d11e998"
             }
         },
         "qt6": {
-            "version": "2024-01-27",
+            "version": "2024-03-19",
             "baseUrl": "https://github.com/obsproject/obs-deps/releases/download",
             "label": "Pre-Built Qt6",
             "hashes": {
-                "windows-x64": "7a15c4b494bfe2df51cad16e7cbcfcc2b5b69b55839dd584c622214038c7d44c"
+                "windows-x64": "72d1df34a0ef7413a681d5fcc88cae81da60adc03dcd23ef17862ab170bcc0dd"
             },
             "debugSymbols": {
-                "windows-x64": "44a3b2b9d576bf0553b0bcabfb71397010e66da9889a0a9b16feb06fbae98f64"
+                "windows-x64": "51e459b1447748c2435d41ef726da1cf1b3ed74f9872317ff2afbb15fe2a44d2"
             }
         }
     },
