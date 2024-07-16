@@ -1,36 +1,36 @@
 {
     "dependencies": {
         "obs-studio": {
-            "version": "30.1.0",
+            "version": "30.2.0",
             "baseUrl": "https://github.com/obsproject/obs-studio/archive/refs/tags",
             "label": "OBS sources",
             "hashes": {
-                "windows-x64": "fc8945ddb4adacc542872d1aacc428a4ac2e9e1282b6950400211848db74e186"
+                "windows-x64": "762eaa67162877e2073edd01ce9880b6ae25ccfe971c87d8bec5883fb1f95b7e"
             }
         },
         "prebuilt": {
-            "version": "2024-03-19",
+            "version": "2024-05-08",
             "baseUrl": "https://github.com/obsproject/obs-deps/releases/download",
             "label": "Pre-Built obs-deps",
             "hashes": {
-                "windows-x64": "6e86068371526a967e805f6f9903f9407adb683c21820db5f07da8f30d11e998"
+                "windows-x64": "773c87a0d173125ef2768aaca6f6de64a7d6053213cc9f7d3970a301152042d8"
             }
         },
         "qt6": {
-            "version": "2024-03-19",
+            "version": "2024-05-08",
             "baseUrl": "https://github.com/obsproject/obs-deps/releases/download",
             "label": "Pre-Built Qt6",
             "hashes": {
-                "windows-x64": "72d1df34a0ef7413a681d5fcc88cae81da60adc03dcd23ef17862ab170bcc0dd"
+                "windows-x64": "8f459af5115ce081ae24b108712327e113893f250e14a902b1bd188b43873ed1"
             },
             "debugSymbols": {
-                "windows-x64": "51e459b1447748c2435d41ef726da1cf1b3ed74f9872317ff2afbb15fe2a44d2"
+                "windows-x64": "e4bc882f23195becbe53f1594fe75bdb9ff4f1d01e319f6caf8e0a38000cb42b"
             }
         }
     },
     "name": "obs-roi-ui",
     "displayName": "OBS ROI Editor",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "author": "Dennis Sädtler",
     "website": "https://rodney.io",
     "email": "dennis@obsproject.com",
