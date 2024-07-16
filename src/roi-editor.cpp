@@ -36,6 +36,7 @@ RoiEditor::RoiEditor(QWidget *parent)
 
 	// Work around Qt not allowing this as a custom property
 	setThemeID(ui->roiWarningLabel, "warning");
+	setThemeID(ui->roiErrorLabel, "error");
 
 	// Hide properties until needed
 	ui->roiPropertiesStack->setVisible(false);
@@ -136,6 +137,13 @@ void RoiEditor::CreateDisplay(bool recreate)
 
 		ui->previewLayout->insertWidget(idx, ui->preview);
 	}
+
+	/* Show warning about scaling if in use. */
+	obs_video_info ovi;
+	obs_get_video_info(&ovi);
+	const bool is_scaled = ovi.base_height != ovi.output_height ||
+			       ovi.base_width != ovi.output_width;
+	ui->roiErrorLabel->setVisible(is_scaled);
 
 	auto addDrawCallback = [this]() {
 		obs_display_add_draw_callback(ui->preview->GetDisplay(),
@@ -488,6 +496,8 @@ static obs_encoder_roi GetItemROI(obs_sceneitem_t *item, float priority)
 
 	matrix4 boxTransform;
 	obs_sceneitem_get_box_transform(item, &boxTransform);
+
+	/* ToDo: Scale to output resolution. */
 
 	vec3 tl, br;
 	vec3_set(&tl, M_INFINITE, M_INFINITE, 0.0f);

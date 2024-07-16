@@ -766,6 +766,13 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QLabel" name="roiErrorLabel">
+         <property name="text">
+          <string>ROI.Usage.Error</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
