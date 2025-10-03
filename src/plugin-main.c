@@ -38,3 +38,13 @@ void obs_module_unload(void)
 {
 	obs_log(LOG_INFO, "plugin unloaded");
 }
+
+MODULE_EXPORT const char *obs_module_description(void)
+{
+	return "Prioritise quality of important parts of your screen. A plugin for encoding nerds.";
+}
+
+MODULE_EXPORT const char *obs_module_name(void)
+{
+	return "Encoder Region of Interest Editor";
+}
