@@ -35,8 +35,8 @@ RoiEditor::RoiEditor(QWidget *parent)
 	setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
 	// Work around Qt not allowing this as a custom property
-	setThemeID(ui->roiWarningLabel, "warning");
-	setThemeID(ui->roiErrorLabel, "error");
+	setThemeID(ui->roiWarningLabel, "text-warning");
+	setThemeID(ui->roiErrorLabel, "text-danger");
 
 	// Hide properties until needed
 	ui->roiPropertiesStack->setVisible(false);
@@ -64,9 +64,9 @@ RoiEditor::RoiEditor(QWidget *parent)
 			 Smoothing::Edge);
 
 	connect(ui->close, &QPushButton::clicked, this, &RoiEditor::close);
-	connect(ui->enableRoi, &QCheckBox::stateChanged, this,
+	connect(ui->enableRoi, &QCheckBox::checkStateChanged, this,
 		&RoiEditor::UpdateEncoders);
-	connect(ui->excludeRecordings, &QCheckBox::stateChanged, this,
+	connect(ui->excludeRecordings, &QCheckBox::checkStateChanged, this,
 		&RoiEditor::UpdateEncoders);
 
 	connect(ui->sceneSelect, &QComboBox::currentIndexChanged, this,
@@ -91,7 +91,7 @@ RoiEditor::RoiEditor(QWidget *parent)
 		&RoiEditor::PropertiesChanges);
 	connect(ui->roiPropSceneItem, &QComboBox::currentIndexChanged, this,
 		&RoiEditor::PropertiesChanges);
-	connect(ui->roiPropEnabled, &QCheckBox::stateChanged, this,
+	connect(ui->roiPropEnabled, &QCheckBox::checkStateChanged, this,
 		&RoiEditor::PropertiesChanges);
 	connect(ui->roiPropOuterPrioritySlider, &QSlider::valueChanged, this,
 		&RoiEditor::PropertiesChanges);
@@ -103,9 +103,9 @@ RoiEditor::RoiEditor(QWidget *parent)
 		&RoiEditor::PropertiesChanges);
 	connect(ui->roiPropRadiusOuterSb, &QSpinBox::valueChanged, this,
 		&RoiEditor::PropertiesChanges);
-	connect(ui->roiPropRadiusOuterAspect, &QCheckBox::stateChanged, this,
+	connect(ui->roiPropRadiusOuterAspect, &QCheckBox::checkStateChanged, this,
 		&RoiEditor::PropertiesChanges);
-	connect(ui->roiPropRadiusInnerAspect, &QCheckBox::stateChanged, this,
+	connect(ui->roiPropRadiusInnerAspect, &QCheckBox::checkStateChanged, this,
 		&RoiEditor::PropertiesChanges);
 	connect(ui->roiPropManualSmoothingSteps, &QSpinBox::valueChanged, this,
 		&RoiEditor::PropertiesChanges);
@@ -117,7 +117,7 @@ RoiEditor::RoiEditor(QWidget *parent)
 		&RoiEditor::PropertiesChanges);
 	connect(ui->roiPropCenterPosY, &QSpinBox::valueChanged, this,
 		&RoiEditor::PropertiesChanges);
-	connect(ui->roiPropRadiusInnerCircle, &QCheckBox::stateChanged, this,
+	connect(ui->roiPropRadiusInnerCircle, &QCheckBox::checkStateChanged, this,
 		&RoiEditor::PropertiesChanges);
 }
 

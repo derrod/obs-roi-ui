@@ -29,6 +29,7 @@
 #include <QStandardItemModel>
 #include <QLabel>
 #include <QPushButton>
+#include <QStyle>
 #include <QToolBar>
 
 bool QTToGSWindow(QWindow *window, gs_window &gswindow)
@@ -63,14 +64,15 @@ bool QTToGSWindow(QWindow *window, gs_window &gswindow)
 	return success;
 }
 
+/* OBS 31+ themes style widgets via the "class" property (e.g. "text-warning",
+ * "text-danger"); the old "themeID" property is no longer honored. */
 void setThemeID(QWidget *widget, const QString &themeID)
 {
-	if (widget->property("themeID").toString() != themeID) {
-		widget->setProperty("themeID", themeID);
+	if (widget->property("class").toString() != themeID) {
+		widget->setProperty("class", themeID);
 
 		/* force style sheet recalculation */
-		QString qss = widget->styleSheet();
-		widget->setStyleSheet("/* */");
-		widget->setStyleSheet(qss);
+		widget->style()->unpolish(widget);
+		widget->style()->polish(widget);
 	}
 }

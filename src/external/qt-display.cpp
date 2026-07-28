@@ -96,8 +96,11 @@ OBSQTDisplay::OBSQTDisplay(QWidget *parent, Qt::WindowFlags flags)
 		obs_display_resize(display, size.width(), size.height());
 	};
 
-	connect(windowHandle(), &QWindow::visibleChanged, windowVisible);
-	connect(windowHandle(), &QWindow::screenChanged, screenChanged);
+	/* Receiver context is required so these connections are severed when
+	 * the widget is destroyed - the preview widgets get deleted and
+	 * recreated while the QWindow can outlive them. */
+	connect(windowHandle(), &QWindow::visibleChanged, this, windowVisible);
+	connect(windowHandle(), &QWindow::screenChanged, this, screenChanged);
 
 	windowHandle()->installEventFilter(new SurfaceEventFilter(this));
 }
